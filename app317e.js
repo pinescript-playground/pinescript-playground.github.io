@@ -9,7 +9,7 @@ let editor = null; // Ace Editor instance
 let fullscreenEditor = null; // Fullscreen Ace Editor instance
 let isFullscreenMode = false;
 let currentLayout = 'tabs'; // 'split' or 'tabs' - Default to tabs
-const DATA_LENGTH = 500;
+const DATA_LENGTH = 5_000;
 let typingTimeout = null; // Timeout for typing indicator
 
 /**
