@@ -1,0 +1,211 @@
+/* Chart Preview Widget */
+.chart-preview {
+    position: fixed;
+    z-index: 9998;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    /*box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);*/
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    min-width: 200px;
+    min-height: 150px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Low opacity when user is typing */
+.chart-preview.typing {
+    opacity: 0.3;
+}
+
+.chart-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 6px;
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom: 1px solid #334155;
+    cursor: grab;
+    user-select: none;
+}
+
+.chart-preview-title {
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.chart-preview-title i {
+    color: #38c0fd;
+}
+
+.chart-preview-title .text-hover {
+    display: none;
+}
+
+.chart-preview:hover .chart-preview-title .text-default {
+    display: none;
+}
+
+.chart-preview:hover .chart-preview-title .text-hover {
+    display: inline;
+}
+
+.chart-preview-close {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.chart-preview-close:hover {
+    color: #38c0fd;
+    background: rgba(56, 192, 253, 0.1);
+}
+
+.chart-preview-canvas {
+    width: 100%;
+    height: calc(100% - 30px);
+    display: block;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.chart-preview-canvas:hover {
+    opacity: 1;
+}
+
+.chart-preview-resize {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    user-select: none;
+    z-index: 10;
+}
+
+/* Position each direction */
+.chart-preview-resize.n {
+    top: 0;
+    left: 12px;
+    right: 12px;
+    height: 6px;
+    width: auto;
+    cursor: ns-resize;
+}
+
+.chart-preview-resize.s {
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 6px;
+    width: auto;
+    cursor: ns-resize;
+}
+
+.chart-preview-resize.e {
+    top: 12px;
+    bottom: 12px;
+    right: 0;
+    width: 6px;
+    height: auto;
+    cursor: ew-resize;
+}
+
+.chart-preview-resize.w {
+    top: 12px;
+    bottom: 12px;
+    left: 0;
+    width: 6px;
+    height: auto;
+    cursor: ew-resize;
+}
+
+.chart-preview-resize.nw {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+}
+
+.chart-preview-resize.ne {
+    top: 0;
+    right: 0;
+    cursor: ne-resize;
+}
+
+.chart-preview-resize.sw {
+    bottom: 0;
+    left: 0;
+    cursor: sw-resize;
+}
+
+.chart-preview-resize.se {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
+/* Collapsed Icon */
+.chart-preview-icon {
+    position: fixed;
+    z-index: 9998;
+    width: 48px;
+    height: 48px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chart-preview-icon i {
+    color: #38c0fd;
+    font-size: 20px;
+}
+
+.chart-preview-icon:hover {
+    background: rgba(15, 23, 42, 1);
+    border-color: #38c0fd;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05);
+}
+
+/* Hover effect */
+.chart-preview:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+/* Animation */
+.chart-preview {
+    animation: fadeInPreview 0.3s ease;
+}
+
+.chart-preview-icon {
+    animation: fadeInPreview 0.3s ease;
+}
+
+@keyframes fadeInPreview {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+

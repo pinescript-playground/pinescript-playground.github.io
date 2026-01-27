@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from quantforge.org/playground/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jan 2026 07:03:35 GMT -->
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>QuantForge Playground - Run Pine Script indicators in the browser</title>
+
+        <!-- Favicons -->
+        <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
+        <link rel="icon" type="image/png" sizes="256x256" href="images/favicon-256.png">
+
+        <!-- External Libraries -->
+        <script src="../../cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+        <script src="js/qfchart.dev.browser4861.js?v=0.6.5"></script>
+        <script src="js/pinets.dev.browserc118.js?v=0.8.5"></script>
+        
+        <!-- Ace Editor for Syntax Highlighting -->
+        <script src="../../cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.min.js"></script>
+        <script src="../../cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/theme-monokai.min.js"></script>
+        <script src="mode-pinescript.js"></script>
+
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles/styles317e.css?v=0.8.0" />
+        <link rel="stylesheet" href="styles/playground317e.css?v=0.8.0" />
+        <link rel="stylesheet" href="styles/chart-preview317e.css?v=0.8.0" />
+
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9VR7QZK182"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-9VR7QZK182');
+        </script>
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-left">
+                <a href="https://quantforge.org/">Home</a>
+            </div>
+            <div class="nav-right">
+            <a href="https://github.com/QuantForgeOrg/QFChart" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                    />
+                </svg>
+                    QFChart
+                </a>
+
+                <a href="https://github.com/QuantForgeOrg/PineTS" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                        />
+                    </svg>
+                    PineTS
+                </a>
+            </div>
+        </nav>
+
+        <div id="container">
+            <h1>QuantForge Playground</h1>
+            <p>Write and test Pine Script indicators in real time. Edit the code, choose a timeframe, and click <strong>Run</strong>.<br />
+            Running an indicator shows a small preview chart. Click the preview to open the full interactive chart.</p>
+            <hr />
+
+            <div class="playground-container" id="playground-container">
+                <!-- Unified Toolbar (Always Visible) -->
+                <div class="editor-toolbar">
+                            <div class="toolbar-section primary">
+                                <!-- Examples Dropdown -->
+                                <div class="input-group flex-grow">
+                                    <select id="examples-select" class="toolbar-select" onchange="if(this.value) loadExample(this.value); this.value='';">
+                                        <option value="" selected disabled>Load Example...</option>
+                                        <option value="sma">Simple MA</option>
+                                        <option value="ema">EMA Crossover</option>
+                                        <option value="rsi">RSI</option>
+                                        <option value="bb">Bollinger Bands</option>
+                                        <option value="macd">MACD</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Load/Save Buttons -->
+                                <div class="file-ops">
+                                    <button id="load-btn" class="icon-btn" data-tooltip="Load .pine file">
+                                        <i class="fa-solid fa-upload"></i>
+                                    </button>
+                                    <input type="file" id="file-input" accept=".pine,.txt" style="display: none;" />
+                                    
+                                    <button id="save-btn" class="icon-btn" data-tooltip="Save .pine file">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="toolbar-section secondary">
+                                <!-- Symbol Selector -->
+                                <div class="input-group">
+                                    <select id="symbol-select" class="toolbar-select" data-tooltip="Select Symbol">
+                                        <option value="BTCUSDC">BTC/USDC</option>
+                                        <option value="ETHUSDC">ETH/USDC</option>
+                                        <option value="SOLUSDC">SOL/USDC</option>
+                                        <option value="BNBUSDC">BNB/USDC</option>
+                                        <option value="ADAUSDC">ADA/USDC</option>
+                                    </select>
+                                </div>
+
+                                <!-- Timeframe Selector -->
+                                <div class="input-group">
+                                    <select id="timeframe" class="toolbar-select" data-tooltip="Select Timeframe">
+                                        <option value="1">1m</option>
+                                        <option value="5">5m</option>
+                                        <option value="15">15m</option>
+                                        <option value="30">30m</option>
+                                        <option value="1h">1h</option>
+                                        <option value="4h">4h</option>
+                                        <option value="D" selected>1D</option>
+                                        <option value="W">1W</option>
+                                        <option value="M">1M</option>
+                                    </select>
+                    </div>
+
+                                <!-- Update Frequency -->
+                                <div class="input-group">
+                                    <select id="update-freq" class="toolbar-select" data-tooltip="Update Frequency">
+                                        <option value="1000">1s</option>
+                                        <option value="3000" selected>3s</option>
+                                        <option value="5000">5s</option>
+                                        <option value="10000">10s</option>
+                        </select>
+                    </div>
+
+                                <!-- Run Button -->
+                                <button id="run-btn" class="run-btn" data-tooltip="Run Indicator (Ctrl+Enter)">
+                                    <i class="fa-solid fa-play"></i>
+                                </button>
+                                
+                                <!-- Layout Toggle -->
+                                <button id="layout-toggle" class="icon-btn" data-tooltip="Toggle Layout (Split/Tabs)">
+                                    <i class="fa-solid fa-table-columns"></i>
+                                </button>
+                                
+                                <!-- Fullscreen Icon -->
+                                <button id="fullscreen-btn" class="icon-btn" data-tooltip="Fullscreen (F11)">
+                                    <i class="fa-solid fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                <!-- View Tabs (Visible in Tab Mode) -->
+                <div class="view-tabs" id="view-tabs">
+                    <div class="tabs-left">
+                        <button class="tab-btn active" data-target="editor-panel">
+                            <i class="fa-solid fa-code"></i> Code
+                        </button>
+                        <button class="tab-btn" data-target="chart-panel">
+                            <i class="fa-solid fa-chart-line"></i> Chart
+                        </button>
+                    </div>
+                    <div class="tabs-right">
+                        <!-- <button id="layout-toggle-tabs" class="icon-btn" data-tooltip="Toggle Layout (Split/Tabs)">
+                            <i class="fa-solid fa-table-columns"></i>
+                        </button> -->
+                    </div>
+                </div>
+
+                <!-- Editor Panel -->
+                <div class="editor-panel" id="editor-panel">
+                    <div class="editor-container">
+                        <!-- Code Editor -->
+                        <div id="pine-code"></div>
+                        
+                        <!-- Status Bar (Bottom) -->
+                    <div id="status" class="status"></div>
+                    </div>
+                </div>
+
+                <!-- Chart Panel -->
+                <div class="chart-panel" id="chart-panel">
+                    <div id="main-chart">
+                        <p class="loading">Click Run Button in the code editor to see the chart</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fullscreen Editor Modal -->
+        <div id="fullscreen-modal" class="fullscreen-modal">
+            <div class="fullscreen-header">
+                <div class="fullscreen-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <span>Pine Script Editor</span>
+                </div>
+                <button id="close-fullscreen-btn" class="close-fullscreen-btn" title="Exit Fullscreen (Esc)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="pine-code-fullscreen" class="fullscreen-editor"></div>
+        </div>
+
+        <!-- Application Script -->
+        <script src="app317e.js?v=0.8.0"></script>
+        <script src="chart-preview317e.js?v=0.8.0"></script>
+    </body>
+
+<!-- Mirrored from quantforge.org/playground/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jan 2026 07:03:39 GMT -->
+</html>
