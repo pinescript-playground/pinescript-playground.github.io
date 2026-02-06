@@ -21273,6 +21273,32 @@ ${code}
         return [];
       }
     }
+    async getMarketDataBackwards(tickerId, timeframe, limit, endTime) {
+      let remaining = limit;
+      let allData = [];
+      let currentEndTime = endTime;
+      let iterations = 0;
+      const maxIterations = Math.ceil(limit / 1e3) + 5;
+      while (remaining > 0 && iterations < maxIterations) {
+        iterations++;
+        const fetchSize = Math.min(remaining, 1e3);
+        const data = await this.getMarketData(
+          tickerId,
+          timeframe,
+          fetchSize,
+          void 0,
+          currentEndTime
+        );
+        if (data.length === 0) break;
+        allData = data.concat(allData);
+        remaining -= data.length;
+        currentEndTime = data[0].openTime - 1;
+        if (data.length < fetchSize) {
+          break;
+        }
+      }
+      return allData;
+    }
     async getMarketData(tickerId, timeframe, limit, sDate, eDate) {
       try {
         const shouldCache = eDate !== void 0;
@@ -21289,11 +21315,17 @@ ${code}
           return [];
         }
         const needsPagination = this.shouldPaginate(timeframe, limit, sDate, eDate);
-        if (needsPagination && sDate && eDate) {
-          const allData = await this.getMarketDataInterval(tickerId, timeframe, sDate, eDate);
-          const result2 = limit ? allData.slice(0, limit) : allData;
-          this.cacheManager.set(cacheParams, result2);
-          return result2;
+        if (needsPagination) {
+          if (sDate && eDate) {
+            const allData = await this.getMarketDataInterval(tickerId, timeframe, sDate, eDate);
+            const result2 = limit ? allData.slice(0, limit) : allData;
+            this.cacheManager.set(cacheParams, result2);
+            return result2;
+          } else if (limit && limit > 1e3) {
+            const result2 = await this.getMarketDataBackwards(tickerId, timeframe, limit, eDate);
+            this.cacheManager.set(cacheParams, result2);
+            return result2;
+          }
         }
         const baseUrl = await this.getBaseUrl();
         let url = `${baseUrl}/klines?symbol=${tickerId}&interval=${interval}`;

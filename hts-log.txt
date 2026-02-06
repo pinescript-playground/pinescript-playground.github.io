@@ -1,0 +1,17 @@
+HTTrack3.49-2+htsswf+htsjava launched on Fri, 06 Feb 2026 18:35:37 at https://quantforge.org/playground/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qiC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://quantforge.org/playground/ -O1 "C:\My Web Sites\playground" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+18:35:38	Warning: 	Note: due to https://quantforge.org remote robots.txt rules, links beginning with these path will be forbidden: /wp-admin/ (see in the options to disable this)
+18:36:26	Warning: 	Retry after error -4 (No data (connection closed)) at link https://quantforge.org/playground/js/qfchart.dev.browser.js?v=0.6.5 (from https://quantforge.org/playground/)
+18:36:48	Warning: 	Retry after error -4 (No data (connection closed)) at link https://quantforge.org/playground/mode-pinescript.js (from https://quantforge.org/playground/)
+18:36:48	Warning: 	Retry after error -4 (No data (connection closed)) at link https://quantforge.org/playground/styles/playground.css?v=0.8.0 (from https://quantforge.org/playground/)
+18:36:48	Warning: 	Retry after error -4 (No data (connection closed)) at link https://quantforge.org/playground/app.js?v=0.8.0 (from https://quantforge.org/playground/)
+18:36:48	Warning: 	Retry after error -4 (No data (connection closed)) at link https://quantforge.org/playground/mode-pinescript.js (from https://quantforge.org/playground/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 12 seconds : 21 links scanned, 15 files written (2696133 bytes overall), 4 files updated [824721 bytes received at 11454 bytes/sec], 1.5 requests per connection
+(No errors, 6 warnings, 0 messages)

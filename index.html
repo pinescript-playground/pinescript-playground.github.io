@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from quantforge.org/playground/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jan 2026 07:03:35 GMT -->
+<!-- Mirrored from quantforge.org/playground/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Feb 2026 13:35:38 GMT -->
 <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,7 @@
         <!-- External Libraries -->
         <script src="cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
         <script src="js/qfchart.dev.browser4861.js?v=0.6.5"></script>
-        <script src="js/pinets.dev.browserc118.js?v=0.8.5"></script>
+        <script src="js/pinets.dev.browser9abd.js?v=0.8.6"></script>
         
         <!-- Ace Editor for Syntax Highlighting -->
         <script src="cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.min.js"></script>
@@ -121,7 +121,7 @@
                                         <option value="5">5m</option>
                                         <option value="15">15m</option>
                                         <option value="30">30m</option>
-                                        <option value="1h">1h</option>
+                                        <option value="60">1h</option>
                                         <option value="4h">4h</option>
                                         <option value="D" selected>1D</option>
                                         <option value="W">1W</option>
@@ -136,9 +136,35 @@
                                         <option value="3000" selected>3s</option>
                                         <option value="5000">5s</option>
                                         <option value="10000">10s</option>
-                        </select>
-                    </div>
+                                    </select>
+                                </div>
 
+                                <!-- Number of Bars -->
+                                <div class="input-group">
+                                    <select id="data-length" class="toolbar-select" data-tooltip="Number of Bars (beta)">
+                                        <option value="500">500 Bars</option>
+                                        <option value="1000" selected>1000 Bars</option>
+                                        <option value="2000">2000 Bars</option>
+                                        <option value="3000">3000 Bars</option>
+                                        <option value="4000">4000 Bars</option>
+                                        <option value="5000">5000 Bars</option>
+                                        <option value="6000">6000 Bars</option>
+                                        <option value="7000">7000 Bars</option>
+                                        <option value="8000">8000 Bars</option>
+                                        <option value="9000">9000 Bars</option>
+                                        <option value="10000">10000 Bars</option>
+                                        <option value="20000">20000 Bars</option>
+                                        <option value="30000">30000 Bars</option>
+                                        <option value="40000">40000 Bars</option>
+                                        <option value="50000">50000 Bars</option>
+                                        <option value="60000">60000 Bars</option>
+                                        <option value="70000">70000 Bars</option>
+                                        <option value="80000">80000 Bars</option>
+                                        <option value="90000">90000 Bars</option>
+                                        <option value="100000">100000 Bars</option>
+                                    </select>
+                                </div>
+                            
                                 <!-- Run Button -->
                                 <button id="run-btn" class="run-btn" data-tooltip="Run Indicator (Ctrl+Enter)">
                                     <i class="fa-solid fa-play"></i>
@@ -217,5 +243,5 @@
         <script src="chart-preview317e.js?v=0.8.0"></script>
     </body>
 
-<!-- Mirrored from quantforge.org/playground/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 27 Jan 2026 07:03:39 GMT -->
+<!-- Mirrored from quantforge.org/playground/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Feb 2026 13:35:38 GMT -->
 </html>
